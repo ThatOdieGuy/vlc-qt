@@ -267,6 +267,27 @@ bool VlcVideo::takeSnapshot(const QString &path) const
     return success;
 }
 
+/*Odie added*/
+int VlcVideo::takeSnapshotAddr(void **ppPNG) const
+{
+	int dataLength = -1;
+	
+	//qDebug() << "VlcVideo::takeSnapshotAddr";
+
+    if (_vlcMediaPlayer && libvlc_media_player_has_vout(_vlcMediaPlayer)) {
+		//qDebug() << "Going to take a snapshot";
+	    dataLength = libvlc_video_take_snapshot_addr(_vlcMediaPlayer, 0, ppPNG, 0, 0);
+
+		//qDebug() << "Took a snapshot";
+		VlcError::errmsg();		    
+    }
+
+	//qDebug() << "snapshot done";
+
+    return dataLength;
+}
+
+
 int VlcVideo::teletextPage() const
 {
     int page = -1;

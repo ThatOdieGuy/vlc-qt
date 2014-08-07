@@ -197,6 +197,14 @@ public:
     */
     bool takeSnapshot(const QString &path) const;
 
+    //Odie added
+    /*!
+        \brief Take a snapshot of current video to memory (currently primary only)
+        \param ppPNG output path (void **)
+        \return data length if successfull or -1 (int)
+    */    
+    int takeSnapshotAddr(void **ppPNG) const;
+
     /*!
         \brief Get current teletext page requested.
         \return current teletext page number (int)
